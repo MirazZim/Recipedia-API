@@ -1,0 +1,33 @@
+Full Database Setup: Set up Drizzle ORM schema, database connection, and migrations
+
+- **Created schema for 'favorite' table**:
+  - Added columns for the 'favorite' table:
+    - `id`: Primary key, auto-incremented number.
+    - `userId`: User identifier (can't be empty).
+    - `recipeId`: Recipe identifier (can't be empty).
+    - `title`: Recipe title (can't be empty).
+    - `image`: Recipe image URL.
+    - `cookTime`: Time needed to cook.
+    - `servings`: Number of servings.
+    - `createdAt`: Date and time when the record was created (can't be empty).
+
+- **Set up database connection with Drizzle ORM**:
+  - Imported needed modules (`drizzle`, `neon-http`, and `@neondatabase/serverless`).
+  - Created a `db` object to interact with the database using Neon serverless driver and the `DATABASE_URL` from environment variables.
+
+- **Created SQL migration files**:
+  - Ran `npx drizzle-kit generate` to create the first migration file (`0000_absent_hellion.sql`) for the 'favorite' table schema.
+  - Migration file is ready to use.
+
+- **Applied migration to the database**:
+  - Ran `npx drizzle-kit migrate` to apply the migration to the database.
+  - Got a warning because the `@neondatabase/serverless` driver connects to remote databases via WebSocket (e.g., Neon, Vercel, or Supabase).
+  - Migration was applied correctly even with the warning.
+
+- **Additional Configuration**:
+  - Set up `drizzle.config.js` to define the database URL and migration location.
+  - Used environment variables for flexibility across different environments.
+
+Next steps:
+- Check the database connection and ensure it’s properly set up for remote connections (e.g., Neon, Vercel, or Supabase).
+- Make sure the 'favorite' table was created correctly in the database.
